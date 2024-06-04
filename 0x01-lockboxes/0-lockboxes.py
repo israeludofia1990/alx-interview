@@ -9,12 +9,16 @@ def canUnlockAll(boxes):
     """
     Check if boxes can be unlocked
     """
-    for key in range(1, len(boxes) - 1):
-        ctr = False
-        for idx in range(len(boxes)):
-            ctr = (key in boxes[idx] and key != idx)
-            if ctr:
-                break
-        if ctr is False:
-            return ctr
-    return True
+    unlocked = set()
+
+    def dfs(box):
+        '''recursive dfs function'''
+        if box in unlocked:
+            return
+        unlocked.add(box)
+        for key in boxes[box]:
+            if key not in unlocked and key < len(boxes):
+                dfs(key)
+
+    dfs(0)
+    return len(unlocked) == len(boxes)
