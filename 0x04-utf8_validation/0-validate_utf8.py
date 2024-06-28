@@ -33,4 +33,4 @@ def validUTF8(data):
             if byte & 0b11000000 != 0b10000000:
                 return False
             count -= 1
-     return count == 0
+    return count == 0
