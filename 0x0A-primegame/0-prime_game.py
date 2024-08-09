@@ -22,6 +22,8 @@ def isWinner(x, nums):
     determines the winner of a game using
     Sieve of Eratosthenes algorithm
     '''
+    if x <= 0:
+        return None
     max_num = max(nums) if nums else 0
     prime_numbers = sieve(max_num)
     maria_wins = 0
@@ -33,7 +35,10 @@ def isWinner(x, nums):
                 maria_wins += 1
             else:
                 ben_wins += 1
-        ben_wins += 1
+        elif n == 1:
+            ben_wins += 1
+        else:
+            pass
     if maria_wins > ben_wins:
         return 'Maria'
     elif ben_wins > maria_wins:
